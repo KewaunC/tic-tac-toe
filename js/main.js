@@ -34,17 +34,25 @@ const box8 = document.querySelector('.eight')
 const box9 = document.querySelector('.nine')
 
 
-const playerTurn = true
+let playerTurn = true
 
-function playerClick(e) {
-    if (e.target.classList.contains('.box')) {
-        e.target.innerText = playerTurn == true ? 'X' : 'O';
-        playerTurn == true ? playerTurn == false : playerTurn == true;
-    }
+function playerClick(e){
+    if (!e.target.classList.contains('mark')){
+        e.target.innerText = playerTurn == true ? 'x': 'o' 
+        playerTurn == true ? playerTurn = false : playerTurn = true
+        e.target.className += ' mark'
+    } 
 }
+document.querySelector('.container').addEventListener('click', playerClick)
 
-document.querySelecter('.container').addEventListener('click', playerClick)
 
+
+// function playerClick(e) {
+//     if (e.target.classList.contains('box')) {
+//         e.target.innerText = playerTurn == true ? 'X' : 'O'
+//         playerTurn == true ? playerTurn == false : playerTurn == true;
+//     }
+// }
 
 // class Player {
 //     constructor( name,startScore) {
