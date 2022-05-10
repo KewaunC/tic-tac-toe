@@ -89,7 +89,7 @@ button:hover{
 *****************************************/
   
 .winnerMessage{
-    display: none;
+    /* display: none; */
     font-size: 4em;
 }
   

@@ -21,30 +21,52 @@
 
 // CLear and Results
 const button = document.querySelector('#clear')
-const result = document.querySelector('#results')
+const result = document.querySelector('#result')
 //Boxes
-const box1 = document.querySelector('.one')
-const box2 = document.querySelector('.two')
-const box3 = document.querySelector('.three')
-const box4 = document.querySelector('.four')
-const box5 = document.querySelector('.five')
-const box6 = document.querySelector('.six')
-const box7 = document.querySelector('.seven')
-const box8 = document.querySelector('.eight')
-const box9 = document.querySelector('.nine')
+const box1 = document.querySelector('#one')
+const box2 = document.querySelector('#two')
+const box3 = document.querySelector('#three')
+const box4 = document.querySelector('#four')
+const box5 = document.querySelector('#five')
+const box6 = document.querySelector('#six')
+const box7 = document.querySelector('#seven')
+const box8 = document.querySelector('#eight')
+const box9 = document.querySelector('#nine')
 
 
 let playerTurn = true
 
 function playerClick(e){
     if (!e.target.classList.contains('mark')){
-        e.target.innerText = playerTurn == true ? 'x': 'o' 
+        e.target.innerText = playerTurn == true ? 'X': 'O' 
         playerTurn == true ? playerTurn = false : playerTurn = true
         e.target.className += ' mark'
+        winningCombos()
     } 
 }
 document.querySelector('.container').addEventListener('click', playerClick)
 
+function winningCombos(){
+    let verticalOne = ['one','four','seven']
+    let verticalTwo = [ 'two','five','eight']
+    let verticalThree = ['three', 'six', 'nine']
+    let diagOne = ['one','five','nine']
+    let diagTwo = ['three', 'five', 'seven']
+    let horOne =['one', 'two', 'three']
+    let horTwo = ['four', 'five', 'six']
+    let horThree = ['seven', 'eight', 'nine']
+    let arr = [verticalOne , verticalTwo , verticalThree , diagOne , diagTwo , horOne , horTwo , horThree ]
+    //Checking and comparing each text
+    if( arr.some( id => (boxChecker(id[0]) === "X" || (boxChecker(id[0]) === "O")) && boxChecker(id[0]) === boxChecker(id[1]) && boxChecker(id[1]) === boxChecker(id[2])) ) {
+        result.innerText = 'Winner!!'
+      } 
+    }
+     
+function boxChecker(boxId){
+    return document.querySelector('#'+ boxId).innerText
+}
+      
+    document.querySelector('.container').addEventListener('click', playerClick)
 
 
 // function playerClick(e) {
